@@ -1,9 +1,11 @@
 {% extends '_base.html' %}
+{% load static %}
 
 {% block title %}Home{% endblock title%}
 
 {% block content %}
     <h2>Homepage</h2>
+    <img class="sugarglow" src="{% static 'images/sugarglow.png' %}">
     {% if user.is_authenticated %}
         Hi {{ user.username }}!
         <form action="{% url 'logout' %}" method="post">
@@ -15,4 +17,8 @@
         <a href="{% url 'login' %}">Log In</a>
         <a href="{% url 'signup' %}">Sign Up</a>
     {% endif %}
+<!--
+    <img src="{% static 'images/path_to_img' %}">
+    <script src="{% static 'js/base.js' %}"></script>
+-->
 {% endblock content%}

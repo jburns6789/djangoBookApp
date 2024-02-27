@@ -6,8 +6,9 @@ name = "pypi"
 [packages]
 django = "*"
 psycopg2-binary = "*"
+django-crispy-forms = "==1.9.2"
 
 [dev-packages]
 
 [requires]
-python_version = "3.12"
+python_version = "3.11"
