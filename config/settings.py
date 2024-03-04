@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = env.bool("DJANGO_DEBUG")
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
@@ -158,16 +158,27 @@ AUTHENTICATION_BACKENDS = [
 SITE_ID = 1
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
+# Have to configure an email service once deployed to the cloud
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# Need to configure:
+# EMAIL_HOST
+# EMAIL_HOST_USER
+# EMAIL_HOST_PASSWORD
+# EMAIL_PORT
+# EMAIL_USE_TLS
 # django-allauth config
+
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
-ACCOUNT_USER_NAME_REQUIRED = False
+ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_EMAIL_VERIFICATION = 'none'
 
+DEFAULT_FROM_EMAIL = 'admin@djangobookstore.com'
+
+"""
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 SOCIALACCOUNT_PROVIDERS = {
     'github': {
         'APP': {
@@ -175,4 +186,4 @@ SOCIALACCOUNT_PROVIDERS = {
             'secret': 'def',
         }
     }
-}
+}"""
