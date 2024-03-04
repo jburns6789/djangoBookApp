@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     # Local
     'accounts',
     'pages',
+    'books',
 
     # Auth sites
     'allauth.socialaccount.providers.github',
