@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'allauth',
     'allauth.account',
+    'debug_toolbar',
     'allauth.socialaccount',
 
     # Local
@@ -57,6 +58,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -65,6 +67,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'allauth.account.middleware.AccountMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
+
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -180,6 +185,19 @@ DEFAULT_FROM_EMAIL = 'admin@djangobookstore.com'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = str(BASE_DIR.joinpath('media'))
+
+import socket
+
+hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+
+#TURN OFF FOR PRODUCTION!!!
+INTERNAL_IPS = type(str('c'), (), {'__contains__': lambda *a: True})()
+#TURN OFF FOR PRODUCTION!!!
+
+CACHE_MIDDLEWARE_ALIAS = 'default'
+CACHE_MIDDLEWARE_SECONDS = 604800
+CACHE_MIDDLEWARE_KEY_PREFIX = ''
+
 
 """
 ACCOUNT_EMAIL_VERIFICATION = 'none'
